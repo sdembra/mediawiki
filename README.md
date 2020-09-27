@@ -5,11 +5,12 @@ This project creates following AWS resources:
 - ELB in front of http servers.
 
 Prerequisites:
-- terraform version 0.11 installed.t
+- terraform version 0.11 installed.
+- awscli installed.
 - create ssh key pair using ssh-keygen command. 
   Provide key file path as /root/.ssh/media_wiki (or ~/.ssh/media_wiki)
-- Attaching terraform 0.11 binary for reference.
-- Create a AWS profile having admin access in /root/.aws/credentials file with name mediawiki.
+- Attaching terraform 0.11 zipped binary for reference. You can also download it from https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
+- Create an AWS profile having admin access in /root/.aws/credentials file with name mediawiki.
 eg. Add following lines in /root/.aws/credentials file: 
 [mediawiki]
 aws_access_key_id = XXXXXXXXXXXXXXXX
