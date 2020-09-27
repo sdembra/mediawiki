@@ -26,7 +26,8 @@ yum install -y httpd >> /tmp/b
 if [ $? -ne 0 ];then
   echo "ERROR: could not install httpd package."
 fi
-yum install -y php72 >> /tmp/b
+#yum install -y php72 >> /tmp/b
+yum install -y php >> /tmp/b
 if [ $? -ne 0 ];then
   echo "ERROR: could not install php package."
 fi
@@ -56,7 +57,7 @@ wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.2.tar.gz
 cd /var/www/html/
 tar -zxf /root/mediawiki-1.34.2.tar.gz
 ln -s mediawiki-1.34.2/ mediawiki
-chown -R apache.apache /var/www/mediawiki
+chown -R apache.apache /var/www/html/mediawiki/
 service httpd restart
 setenforce 0
 echo "JSK" >> /tmp/a.txt

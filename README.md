@@ -22,9 +22,11 @@ $ terraform init --reconfigure
 $ terraform pan -var-file terraform.tfvars
 $ terrafom apply -var-file terrafor.tfvars
 
-After terraform is applied, access the ELB from browser. (Get the DNS resolvable name from AWS console)
-Set up media wiki.
-
 Implementation details:
 web_user_data.tpl takes care of configuring yum-repo, installing httpd and php. It also installs mediawiki.
 db_user_data.tpl takes care of installting mariadb-server and mariadb and also creating 'mediawiki' database and 'wiki' user in mysql.
+
+After terraform is applied, access the ELB from browser. (Get the DNS resolvable name from AWS console)
+Set up media wiki.
+mysql user/password for mediawiki database is "wiki/mediawiki"
+You can get the IP address of DB server from AWS console or from terraform state file.

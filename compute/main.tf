@@ -43,18 +43,18 @@ resource "aws_instance" "mw_instance_web_a" {
   }
 }
 
-#resource "aws_instance" "mw_instance_web_b" {
-#  ami = "${var.ami}"
-#  instance_type = "${var.web_instance_type}"
-#  key_name = "${aws_key_pair.mw_key_pair.id}"
-#  vpc_security_group_ids = ["${var.web_security_group}"]
-#  subnet_id = "${var.web_subnet_b}"
-#  user_data = "${data.template_file.web_init.rendered}"
-#  tags{
-#    Name = "mw_instance_web_b"
-#    Project = "mediawiki"
-#  }
-#}
+resource "aws_instance" "mw_instance_web_b" {
+  ami = "${var.ami}"
+  instance_type = "${var.web_instance_type}"
+  key_name = "${aws_key_pair.mw_key_pair.id}"
+  vpc_security_group_ids = ["${var.web_security_group}"]
+  subnet_id = "${var.web_subnet_b}"
+  user_data = "${data.template_file.web_init.rendered}"
+  tags{
+    Name = "mw_instance_web_b"
+    Project = "mediawiki"
+  }
+}
 
 resource "aws_instance" "mw_instance_db" {
   ami = "${var.ami}"
@@ -87,8 +87,8 @@ resource "aws_elb" "mw_elb" {
 
   name = "media-wiki-elb"
   subnets = ["${var.jump_host_subnet}", "${var.public_subnet_b}"]
-  #instances = ["${aws_instance.mw_instance_web_a.id}", "${aws_instance.mw_instance_web_b.id}"]
-  instances = ["${aws_instance.mw_instance_web_a.id}"]
+  instances = ["${aws_instance.mw_instance_web_a.id}", "${aws_instance.mw_instance_web_b.id}"]
+  #instances = ["${aws_instance.mw_instance_web_a.id}"]
   security_groups = ["${var.web_security_group}"]
 
   listener {
